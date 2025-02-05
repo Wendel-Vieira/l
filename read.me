@@ -1,0 +1,71 @@
+Key Concepts and Approach
+
+    Backtracking with Recursion:
+
+        Objective: Explore all possible ways to add parentheses while ensuring validity at each step.
+
+        Mechanism: Use recursion to build combinations incrementally, backtracking when constraints are violated.
+
+    Constraints for Validity:
+
+        Opening Parentheses: Add ( only if the count of ( used so far is less than n.
+
+        Closing Parentheses: Add ) only if the count of ) is less than the count of ( (ensuring proper nesting).
+
+    Base Case:
+
+        When the current combination's length reaches 2n (all pairs are used), add it to the result list.
+
+Step-by-Step Explanation
+
+    Initialization:
+
+        Start with an empty string and track the counts of ( and ) used.
+
+    Recursive Exploration:
+
+        Add ( if possible: When the number of ( is less than n, append ( and increment its count.
+
+        Add ) if possible: When the number of ) is less than (, append ) and increment its count.
+
+        Base Case Check: If the combination's length is 2n, save it as a valid result.
+
+    Backtracking:
+
+        After exploring a path (e.g., adding (), the recursion unwinds (backtracks) to explore alternative paths (e.g., adding ) instead).
+
+Example Walkthrough (n = 2)
+
+    Start: Empty string. Open = 0, Close = 0.
+
+    Add ( → (: Open = 1, Close = 0.
+
+        Add ( → ((: Open = 2, Close = 0.
+
+            Add ) → ((): Open = 2, Close = 1.
+
+                Add ) → (()): Length = 4 → valid result.
+
+        Backtrack to (:
+
+            Add ) → (): Open = 1, Close = 1.
+
+                Add ( → ()(: Open = 2, Close = 1.
+
+                    Add ) → ()(): Length = 4 → valid result.
+
+Why This Works
+
+    Systematic Exploration: The recursion tries all valid choices at each step, ensuring no valid combination is missed.
+
+    Constraint Enforcement: The rules for adding ( and ) guarantee that only properly nested parentheses are formed.
+
+    Efficiency: Invalid paths are abandoned early (e.g., closing a parenthesis before opening it), reducing unnecessary computation.
+
+Study Focus
+
+    Backtracking: Understand how recursion explores and prunes decision trees.
+
+    Recursive State Management: Track parameters like current string and parenthesis counts.
+
+    Constraint Validation: Learn how rules ensure valid combinations without explicit checks.
